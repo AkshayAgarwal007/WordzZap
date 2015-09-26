@@ -2,13 +2,23 @@ import pygame
 import sys
 from pygame.locals import *
 
+def text_display(text,color):
+   FONT=pygame.font.SysFont('monospace',32)
+   FONT.set_bold(True)
+   SURFACEFONT=FONT.render(text,True,color)
+   return SURFACEFONT
 
 def main():
-    
+    pygame.init()
     screen = pygame.display.set_mode((1366,768),pygame.FULLSCREEN)
     pygame.display.set_caption('WordzZap')
     FPS=120
     clock=pygame.time.Clock()
+    
+    red=(255,0,0)
+    a=text_display('APPLE',red)
+    SURFACER_a=a.get_rect()
+    SURFACER_a.center=(320,50)
     
     backglist=['./Assets/layer_1.png','./Assets/layer_2.png','./Assets/layer_3.png']
     
@@ -68,7 +78,7 @@ def main():
         screen.blit(tree,(850,415))
         
         screen.blit(backg[2],(0,768-683))
-        
+        screen.blit(a,SURFACER_a)
         
         
         screen.blit(board,(xb,565))
