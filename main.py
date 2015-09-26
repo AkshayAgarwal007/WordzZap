@@ -1,6 +1,7 @@
 import pygame
 import sys
 from pygame.locals import *
+from main2 import *
 
 def text_display(text,color):
    FONT=pygame.font.SysFont('monospace',32)
@@ -8,17 +9,26 @@ def text_display(text,color):
    SURFACEFONT=FONT.render(text,True,color)
    return SURFACEFONT
 
+def get_key():
+  while 1:
+    event = pygame.event.poll()
+    if event.type == KEYDOWN:
+      return event.key
+    else:
+      pass
+    
 def main():
     pygame.init()
     screen = pygame.display.set_mode((1366,768),pygame.FULLSCREEN)
     pygame.display.set_caption('WordzZap')
+    metro2(screen)
     FPS=120
     clock=pygame.time.Clock()
     
     red=(255,0,0)
-    a=text_display('APPLE',red)
+    a=text_display('GRAPES',red)
     SURFACER_a=a.get_rect()
-    SURFACER_a.center=(320,50)
+    SURFACER_a.center=(100,150)
     
     backglist=['./Assets/layer_1.png','./Assets/layer_2.png','./Assets/layer_3.png']
     
@@ -44,7 +54,7 @@ def main():
     imglist=[]
 
     for kp in range(0,4):
-        imglist.append(pygame.image.load("PNG/frame-%s.png"%str(kp+1)).convert_alpha())
+        imglist.append(pygame.image.load("./Assets/PNG/frame-%s.png"%str(kp+1)).convert_alpha())
  
     for f in range(0,4):
         imglist[f]=pygame.transform.scale(imglist[f],(100,70))
@@ -59,6 +69,7 @@ def main():
     r=0
     frames=0
     onn=0
+    x1=100
     
     while True:
         
@@ -68,8 +79,8 @@ def main():
                 sys.exit()
             if event.type==pygame.KEYDOWN:
                 if event.key ==  K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    metro2(screen)
+            
         screen.blit(backg[0],(0,0))
         
         screen.blit(backg[1],(0,768-683))
@@ -84,7 +95,9 @@ def main():
         screen.blit(board,(xb,565))
         screen.blit(character,(xc,573))
         
+        SURFACER_a.center=(x1,150)
         
+        x1=x1+1
         
         if frames%10==0:
 
