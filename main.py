@@ -34,8 +34,8 @@ def main():
                     pygame.quit()
                     sys.exit()
         screen.fill((255,255,255))
-        screen.blit(board,(40,600))
-        screen.blit(character,(100,608))
+        screen.blit(board,(40,566))
+        screen.blit(character,(100,574))
         
         screen.blit(backg[2],(0,768-683))
         clock.tick(FPS)
