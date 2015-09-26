@@ -22,9 +22,14 @@ def main():
     for img in backglist:
         backg.append(pygame.image.load(img).convert_alpha())
         
+    tree=pygame.image.load('./Assets/tree.png').convert_alpha()
+    
+    tree=pygame.transform.scale(tree,(400,400))
+        
     
     backg[2]=pygame.transform.scale(backg[2],(1366,683))
     backg[0]=pygame.transform.scale(backg[0],(1366,683))
+    backg[1]=pygame.transform.scale(backg[1],(1366,683))
     
     imglist=[]
 
@@ -43,6 +48,7 @@ def main():
     xp=0
     r=0
     frames=0
+    onn=0
     
     while True:
         
@@ -56,12 +62,18 @@ def main():
                     sys.exit()
         screen.blit(backg[0],(0,0))
         
+        screen.blit(backg[1],(0,768-683))
         
+        screen.blit(tree,(1050,360))
+        screen.blit(tree,(850,415))
         
         screen.blit(backg[2],(0,768-683))
         
+        
+        
         screen.blit(board,(xb,565))
         screen.blit(character,(xc,573))
+        
         
         
         if frames%10==0:
@@ -71,13 +83,23 @@ def main():
             if r==4:
                 r=0
 
-        xp=xp+2
+        xp=xp+1
         screen.blit(imglist[r],(xp,40))
  
         
+        if onn==0:
+            xb=xb+2
+            xc=xc+2
         
-        xb=xb+2
-        xc=xc+2
+        if onn==1:
+            xb=xb-2
+            xc=xc-2
+        
+        if xb>=1000:
+            
+            onn=1
+        if xb<=38:
+            onn=0
         
         clock.tick(FPS)
         pygame.display.update()
