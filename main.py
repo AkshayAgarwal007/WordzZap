@@ -14,10 +14,14 @@ def main():
     
     backg = []
     
+    character = pygame.image.load('./Assets/1.png')
+    
     board=pygame.image.load('./Assets/board1.png')
     
     for img in backglist:
         backg.append(pygame.image.load(img))
+    
+    backg[2]=pygame.transform.scale(backg[2],(1366,683))
     
     while True:
         
@@ -30,7 +34,10 @@ def main():
                     pygame.quit()
                     sys.exit()
         screen.fill((255,255,255))
-        screen.blit(board,(40,40))
+        screen.blit(board,(40,600))
+        screen.blit(character,(100,608))
+        
+        screen.blit(backg[2],(0,768-683))
         clock.tick(FPS)
         pygame.display.update()
         
