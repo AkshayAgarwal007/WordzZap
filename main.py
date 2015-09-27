@@ -2,6 +2,7 @@ import pygame
 import sys
 from pygame.locals import *
 from main2 import *
+import random
 
 def text_display(text,color):
    FONT=pygame.font.SysFont('monospace',32)
@@ -9,13 +10,7 @@ def text_display(text,color):
    SURFACEFONT=FONT.render(text,True,color)
    return SURFACEFONT
 
-def get_key():
-  while 1:
-    event = pygame.event.poll()
-    if event.type == KEYDOWN:
-      return event.key
-    else:
-      pass
+
     
 def main():
     pygame.init()
@@ -70,6 +65,18 @@ def main():
     frames=0
     onn=0
     x1=100
+    display_reg = []
+    lst = ['apple','orange','banana']
+    
+    r1= random.randint(0,len(lst)-1)
+    current_string = list(lst[r1]) 
+    for r3 in current_string:
+        display_reg.append(0)
+    
+    print current_string
+    sskey=''
+    marker=0
+    string_picker=0
     
     while True:
         
@@ -80,7 +87,32 @@ def main():
             if event.type==pygame.KEYDOWN:
                 if event.key ==  K_ESCAPE:
                     metro2(screen)
+                    
+                if event.key <=127:
+                    sskey = (chr(event.key))
+                    if current_string[marker]==sskey:
+                        
+                        
+                        display_reg[marker]=1
+                        marker=marker+1
+                        
+                    else:
+                        for i3 in range(0,len(display_reg)):
+                            display_reg[i3]=0
+                        marker=0
+                        
+        
+        if marker == len(display_reg):
+            current_string=[]
+            display_reg=[]
+            marker=0
+            r1= random.randint(0,len(lst)-1)
+            current_string = list(lst[r1]) 
+            for r3 in current_string:
+                display_reg.append(0)
+            print current_string
             
+        print display_reg
         screen.blit(backg[0],(0,0))
         
         screen.blit(backg[1],(0,768-683))
