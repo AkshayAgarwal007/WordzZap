@@ -167,8 +167,7 @@ def main():
                         name.name1=''
                         name.name2=current_string
                         
-        print name.name1
-        print name.name2
+        
         
         if marker == len(current_string):
             for imf in BaseClass.allsprites:
@@ -217,7 +216,9 @@ def main():
                 r=0
 
         xp=xp+1
-        mfruit.motion()
+        for imf1 in BaseClass.allsprites:
+            imf1.motion()
+            
         screen.blit(imglist[r],(xp,40))
         BaseClass.allsprites.draw(screen)
         

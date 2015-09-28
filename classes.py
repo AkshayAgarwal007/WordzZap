@@ -22,11 +22,14 @@ class BaseClass(pygame.sprite.Sprite):
   
   self.rect.x = x
   self.rect.y = y
+  self.base=644
 
   self.width = width
   self.height = height
   
-  
+class Tux:
+    movex = []
+    
 class Fruit (BaseClass):
     List = pygame.sprite.Group()
     
@@ -35,12 +38,19 @@ class Fruit (BaseClass):
         Fruit.List.add(self)
         self.going_right=True
         self.going_down=False
+        self.move=True
         self.velx=1
         self.vely=1
         
     def motion(self):
+        
         if self.going_right==True:  
             self.rect.x +=self.velx
         elif self.going_down==True:
             self.rect.y+=self.vely
-
+            if self.rect.y+self.width+self.vely>=self.base:
+                print self.rect.y
+                self.going_down=False
+                movex.append(self.rect.x)
+            
+    
