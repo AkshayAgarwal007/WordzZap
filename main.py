@@ -17,6 +17,8 @@ class name:
     name1=''
     name2=''                  # class for surface font fruit names
     
+    
+    
 def main():
     
     #--------------------- pygame initialisation------------------
@@ -32,6 +34,14 @@ def main():
     red=(255,0,0)
     white=(255,255,255)
     
+    #-------------------------- score_board---------------------------
+    
+    score_text=text_display("X"+str(Tux.score),white)
+    score_text_a=score_text.get_rect()
+    
+    
+    score_text_a.top=40
+    score_text_a.left=20+60
     
     
     #----------------------- character and board load-----------------------
@@ -43,7 +53,7 @@ def main():
     
     
     
- 
+    star = pygame.image.load('./Assets/star.png').convert_alpha()
         
     
     
@@ -131,7 +141,8 @@ def main():
     xc=110
     fallx=800
     move=True
-    move_right=True
+    move_right=False
+    move_left=False
 
     register=True
     
@@ -204,7 +215,9 @@ def main():
         
         screen.blit(board,(xb,565))
         screen.blit(character,(xc,573))
-        
+        screen.blit(star,(20,20))
+        score_text=text_display("X"+str(Tux.score),white)
+        screen.blit(score_text,score_text_a)
         
   
         
@@ -233,6 +246,7 @@ def main():
         screen.blit(text1,text1_a)
         screen.blit(text2,text2_a)
         
+       
         
                     
         if xp>1450:
@@ -252,25 +266,33 @@ def main():
         
         if len(Tux.movex)is not 0:
             if Tux.movex[0]>=xb:
-                xb=xb+3
-                xc=xc+3
-                if xb+180>=Tux.movex[0]:
+                move_right=True
+                if xb+170>=Tux.movex[0]:
                     
                     for imf2 in BaseClass.allsprites:
                         if imf2.move==False and imf2.rect.x==Tux.movex[0]:
                             imf2.destroy(Fruit)
+                    
                     Tux.movex.pop(0)
+                    move_right=False
+                    Tux.score+=10
                     
             elif Tux.movex[0]<xb:
-                xb=xb-3
-                xc=xc-3
-                if xb<=Tux.movex[0]:
+                move_left=True
+                if xb-40<=Tux.movex[0]:
                     for imf2 in BaseClass.allsprites:
                         if imf2.move==False and imf2.rect.x==Tux.movex[0]:
                             imf2.destroy(Fruit)
                     Tux.movex.pop(0)
+                    move_left=False
+                    Tux.score+=10
         
-        
+        if move_right ==True:
+            xb+=3
+            xc+=3
+        elif move_left ==True:
+            xb-=3
+            xc-=3
         clock.tick(FPS)
         pygame.display.update()
         
