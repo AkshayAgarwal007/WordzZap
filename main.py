@@ -169,7 +169,10 @@ def main():
         print name.name2
         
         if marker == len(current_string):
-            
+            for imf in BaseClass.allsprites:
+               if imf.going_right==True: 
+                imf.going_right=False
+                imf.going_down=True
             current_string=''
             marker=0
             r1= random.randint(0,len(lst)-1)

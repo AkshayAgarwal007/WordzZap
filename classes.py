@@ -28,18 +28,19 @@ class BaseClass(pygame.sprite.Sprite):
   
   
 class Fruit (BaseClass):
-    List1 = pygame.sprite.Group()
-    List2 = pygame.sprite.Group()
+    List = pygame.sprite.Group()
+    
     def __init__(self,image_string):
         BaseClass.__init__(self,image_string)
-        Fruit.List1.add(self)
-        going_right=True
-        going_down=False
-        
+        Fruit.List.add(self)
+        self.going_right=True
+        self.going_down=False
         self.velx=1
         self.vely=1
         
     def motion(self):
-        
-        self.rect.x +=self.velx
+        if self.going_right==True:  
+            self.rect.x +=self.velx
+        elif self.going_down==True:
+            self.rect.y+=self.vely
 
