@@ -4,8 +4,9 @@ from pygame.locals import *
 from main2 import *
 import random
 import string
+from classes import *
 
-def text_display(text,color):
+def text_display(text,color):                   #surface font functions
    text=text.upper()
    FONT=pygame.font.SysFont('monospace',32)
    FONT.set_bold(True)
@@ -14,9 +15,11 @@ def text_display(text,color):
 
 class name:
     name1=''
-    name2=''
+    name2=''                  # class for surface font fruit names
     
 def main():
+    
+    #--------------------- pygame initialisation------------------
     pygame.init()
     screen = pygame.display.set_mode((1366,768),pygame.FULLSCREEN)
     pygame.display.set_caption('WordzZap')
@@ -24,24 +27,37 @@ def main():
     FPS=120
     clock=pygame.time.Clock()
     
+    #------------------------some colours------------------------------
+    
     red=(255,0,0)
     white=(255,255,255)
     
-    backglist=['./Assets/layer_1.png','./Assets/layer_2.png','./Assets/layer_3.png']
     
-    backg = []
+    
+    #----------------------- character and board load-----------------------
     
     character = pygame.image.load('./Assets/1.png').convert_alpha()
  
     
     board=pygame.image.load('./Assets/board1.png').convert_alpha()
     
-    fruitlist = ['./Assets/lit.png','./Assets/lit.png','./Assets/lit.png']
     
-    fruit = []
-    for img1 in fruitlist:
-        fruit.append(pygame.image.load(img1).convert_alpha())
+    
+    
+    #----------------------- fruit loader------------------------------------
+    
+    fruitlist = ['./Assets/lit.png','./Assets/lit.png','./Assets/lit.png']
         
+    mfruit= Fruit('./Assets/grapes.gif')
+        
+    
+    
+    #-------------------three layer background and trees------------------------------
+    
+    backglist=['./Assets/layer_1.png','./Assets/layer_2.png','./Assets/layer_3.png']
+    
+    backg = []
+    
     for img in backglist:
         backg.append(pygame.image.load(img).convert_alpha())
         
@@ -54,36 +70,32 @@ def main():
     backg[0]=pygame.transform.scale(backg[0],(1366,683))
     backg[1]=pygame.transform.scale(backg[1],(1366,683))
     
+    for img1 in backg:
+        img1.convert_alpha()
+    
+    
+    #----------------------- bird sprite-----------------------------------------
     imglist=[]
-
+    
     for kp in range(0,4):
         imglist.append(pygame.image.load("./Assets/PNG/frame-%s.png"%str(kp+1)).convert_alpha())
  
     for f in range(0,4):
         imglist[f]=pygame.transform.scale(imglist[f],(100,70))
         
-  
+    xp=0     #---------bird movement---------------
     
-    for img1 in backg:
-        img1.convert_alpha()
-    xb=40
-    xc=110
-    xp=0
-    r=0
+    r=0      #-----------bird animation-------------
+    
+   
+    
+    
     frames=0
+   
+
+   #-----------fruit names surface font---------------------
     
-    x1=100
-    display_reg = []
     lst = ['apple','orange','banana']
-    
-    xf_lst = [0]
-    yf_lst = [0]
-    fs=100
-    
-    fall_list=[]
-    fall_list_x=[]
-    
-   #-------------------------------------------------
     marker=0
     r1= random.randint(0,len(lst)-1)
     current_string = lst[r1]
@@ -108,17 +120,17 @@ def main():
     text2_a.top=150
     text2_a.left=40+u[0]
     
-    #---------------------------------------------
     sskey=''
     
+    #------------tux movement----------------------
     
+    
+    xb=40
+    xc=110
     fallx=800
     move=True
     move_right=True
-    
-    fall=False
-    
-    yf=60
+
     register=True
     
     while True:
@@ -157,9 +169,7 @@ def main():
         print name.name2
         
         if marker == len(current_string):
-            fall_list.append(fruit[r1])
-            fall_list_x.append(fs)
-            fall=True
+            
             current_string=''
             marker=0
             r1= random.randint(0,len(lst)-1)
@@ -184,7 +194,7 @@ def main():
         screen.blit(tree,(850,415))
         
         screen.blit(backg[2],(0,768-683))
-        screen.blit(fruit[r1],(fs,60))
+       
         
         
         
@@ -192,9 +202,7 @@ def main():
         screen.blit(character,(xc,573))
         
         
-        
-        
-        fs=fs+1
+  
         
         if frames%10==0:
 
@@ -204,7 +212,10 @@ def main():
                 r=0
 
         xp=xp+1
+        mfruit.motion()
         screen.blit(imglist[r],(xp,40))
+        BaseClass.allsprites.draw(screen)
+        
         FONT=pygame.font.SysFont('monospace',32)
         FONT.set_bold(True)
         u=FONT.size(name.name1)
@@ -216,16 +227,7 @@ def main():
         screen.blit(text1,text1_a)
         screen.blit(text2,text2_a)
         
-        if fall==True:
-            for imgh in fall_list:
-                screen.blit(imgh,(fall_list_x[0],yf))
-                yf=yf+1
         
-                if yf+70>565+190:
-                    fall=False
-                    fallx=fall_list_x[0]
-                    move=True
-                    move_right=False
                     
         if xp>1450:
             xp=-200
