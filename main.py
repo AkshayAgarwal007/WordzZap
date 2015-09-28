@@ -119,7 +119,7 @@ def main():
     fall=False
     
     yf=60
-   
+    register=True
     
     while True:
         
@@ -131,7 +131,7 @@ def main():
                 if event.key ==  K_ESCAPE:
                     metro2(screen)
                    
-                if event.key <=127:
+                if event.key <=127 and register==True:
                     sskey = (chr(event.key))
                     if current_string[marker]==sskey:
                         
@@ -166,6 +166,7 @@ def main():
             current_string = lst[r1] 
             name.name1=''
             name.name2=''
+            register=False
            
             
             
@@ -237,7 +238,7 @@ def main():
             name.name2=current_string
             text1_a.left=-160
             text2_a.left=-160
-           
+            register=True
             
         
         
