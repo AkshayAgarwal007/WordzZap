@@ -2,31 +2,37 @@ import pygame
 
 class BaseClass(pygame.sprite.Sprite):
  
- allsprites = pygame.sprite.Group()
- def __init__(self,x1,image_string):
+    allsprites = pygame.sprite.Group()
+    def __init__(self,x1,image_string):
   
-  pygame.sprite.Sprite.__init__(self)
-  BaseClass.allsprites.add(self)
+        pygame.sprite.Sprite.__init__(self)
+        BaseClass.allsprites.add(self)
 
-  self.image = pygame.image.load(image_string).convert_alpha()
+        self.image = pygame.image.load(image_string).convert_alpha()
   
   
-  if image_string=='./Assets/grapes.gif':
-    x=x1+68
-    y=70
-    width=50
-    height=90
+        if image_string=='./Assets/grapes.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
   
-  self.image=pygame.transform.scale(self.image,(width,height)) 
-  self.rect = self.image.get_rect()
+        self.image=pygame.transform.scale(self.image,(width,height)) 
+        self.rect = self.image.get_rect()
   
-  self.rect.x = x
-  self.rect.y = y
-  self.base=644
+        self.rect.x = x
+        self.rect.y = y
+        self.base=644
 
-  self.width = width
-  self.height = height
-  
+        self.width = width
+        self.height = height
+ 
+    def destroy(self,ClassName):
+        ClassName.List.remove(self)
+        BaseClass.allsprites.remove(self)
+        del self
+        
+        
 class Tux:
     movex = []
     
@@ -52,5 +58,5 @@ class Fruit (BaseClass):
                 print self.rect.y
                 self.going_down=False
                 Tux.movex.append(self.rect.x)
-            
+                self.move=False            
     

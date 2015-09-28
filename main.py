@@ -254,13 +254,20 @@ def main():
             if Tux.movex[0]>=xb:
                 xb=xb+3
                 xc=xc+3
-                if xb+190>=Tux.movex[0]:
+                if xb+180>=Tux.movex[0]:
+                    
+                    for imf2 in BaseClass.allsprites:
+                        if imf2.move==False and imf2.rect.x==Tux.movex[0]:
+                            imf2.destroy(Fruit)
                     Tux.movex.pop(0)
                     
-            elif Tux.move[0]<xb:
+            elif Tux.movex[0]<xb:
                 xb=xb-3
                 xc=xc-3
                 if xb<=Tux.movex[0]:
+                    for imf2 in BaseClass.allsprites:
+                        if imf2.move==False and imf2.rect.x==Tux.movex[0]:
+                            imf2.destroy(Fruit)
                     Tux.movex.pop(0)
         
         
