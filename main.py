@@ -228,7 +228,7 @@ def main():
             if r==4:
                 r=0
 
-        xp=xp+1
+        xp=xp+2
         for imf1 in BaseClass.allsprites:
             imf1.motion()
             
@@ -239,7 +239,7 @@ def main():
         FONT.set_bold(True)
         u=FONT.size(name.name1)
         
-        text1_a.left=text1_a.left+1
+        text1_a.left=text1_a.left+2
         text2_a.left=text1_a.left+u[0]
         
  
@@ -267,7 +267,7 @@ def main():
         if len(Tux.movex)is not 0:
             if Tux.movex[0]>=xb:
                 move_right=True
-                if xb+170>=Tux.movex[0]:
+                if xb+190>=Tux.movex[0]:
                     
                     for imf2 in BaseClass.allsprites:
                         if imf2.move==False and imf2.rect.x==Tux.movex[0]:
