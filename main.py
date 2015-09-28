@@ -33,6 +33,12 @@ def main():
  
     
     board=pygame.image.load('./Assets/board1.png').convert_alpha()
+    
+    fruitlist = ['./Assets/lit.png','./Assets/lit.png','./Assets/lit.png']
+    
+    fruit = []
+    for img1 in fruitlist:
+        fruit.append(pygame.image.load(img1).convert_alpha())
         
     for img in backglist:
         backg.append(pygame.image.load(img).convert_alpha())
@@ -63,10 +69,17 @@ def main():
     xp=0
     r=0
     frames=0
-    onn=0
+    
     x1=100
     display_reg = []
     lst = ['apple','orange','banana']
+    
+    xf_lst = [0]
+    yf_lst = [0]
+    fs=100
+    
+    fall_list=[]
+    fall_list_x=[]
     
     r1= random.randint(0,len(lst)-1)
     current_string = list(lst[r1]) 
@@ -77,6 +90,12 @@ def main():
     sskey=''
     marker=0
     string_picker=0
+    fruitobjx=[]
+    
+    fallx=800
+    move=True
+    move_right=True
+   
     
     while True:
         
@@ -112,6 +131,8 @@ def main():
                 display_reg.append(0)
             print current_string
             
+        
+            
         print display_reg
         screen.blit(backg[0],(0,0))
         
@@ -121,6 +142,7 @@ def main():
         screen.blit(tree,(850,415))
         
         screen.blit(backg[2],(0,768-683))
+        screen.blit(fruit[r1],(fs,60))
         screen.blit(a,SURFACER_a)
         
         
@@ -130,6 +152,7 @@ def main():
         SURFACER_a.center=(x1,150)
         
         x1=x1+1
+        fs=fs+1
         
         if frames%10==0:
 
@@ -141,20 +164,32 @@ def main():
         xp=xp+1
         screen.blit(imglist[r],(xp,40))
  
-        
-        if onn==0:
-            xb=xb+2
-            xc=xc+2
-        
-        if onn==1:
-            xb=xb-2
-            xc=xc-2
-        
-        if xb>=1000:
+       
+        if xp>1450:
+            xp=-200
+            current_string=[]
+            display_reg=[]
+            marker=0
+            r1= random.randint(0,len(lst)-1)
+            current_string = list(lst[r1]) 
+            for r3 in current_string:
+                display_reg.append(0)
             
-            onn=1
-        if xb<=38:
-            onn=0
+        
+        
+        if move==True:
+            if move_right==True:
+                xb=xb+3
+                xc=xc+3
+                if xb+190>=fallx:
+                    move = False
+                    
+            if move_right==False:
+                xb=xb-3
+                xc=xc-3
+                if xb<=fallx:
+                    move = False
+        
         
         clock.tick(FPS)
         pygame.display.update()
