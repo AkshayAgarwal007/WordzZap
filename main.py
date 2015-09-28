@@ -82,9 +82,7 @@ def main():
     fall_list_x=[]
     
     r1= random.randint(0,len(lst)-1)
-    current_string = list(lst[r1]) 
-    for r3 in current_string:
-        display_reg.append(0)
+    current_string = lst[r1]
     
     print current_string
     sskey=''
@@ -112,23 +110,18 @@ def main():
                     if current_string[marker]==sskey:
                         
                         
-                        display_reg[marker]=1
                         marker=marker+1
                         
                     else:
-                        for i3 in range(0,len(display_reg)):
-                            display_reg[i3]=0
+                        
                         marker=0
                         
         
         if marker == len(display_reg):
-            current_string=[]
-            display_reg=[]
+            current_string=''
             marker=0
             r1= random.randint(0,len(lst)-1)
-            current_string = list(lst[r1]) 
-            for r3 in current_string:
-                display_reg.append(0)
+            current_string = lst[r1] 
             print current_string
             
         
