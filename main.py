@@ -6,6 +6,7 @@ import random
 import string
 
 def text_display(text,color):
+   text=text.upper()
    FONT=pygame.font.SysFont('monospace',32)
    FONT.set_bold(True)
    SURFACEFONT=FONT.render(text,True,color)
@@ -234,6 +235,8 @@ def main():
             current_string = lst[r1]
             name.name1=''
             name.name2=current_string
+            text1_a.left=-160
+            text2_a.left=-160
            
             
         
