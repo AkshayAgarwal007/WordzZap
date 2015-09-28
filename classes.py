@@ -3,7 +3,7 @@ import pygame
 class BaseClass(pygame.sprite.Sprite):
  
  allsprites = pygame.sprite.Group()
- def __init__(self,image_string):
+ def __init__(self,x1,image_string):
   
   pygame.sprite.Sprite.__init__(self)
   BaseClass.allsprites.add(self)
@@ -12,7 +12,7 @@ class BaseClass(pygame.sprite.Sprite):
   
   
   if image_string=='./Assets/grapes.gif':
-    x=68
+    x=x1+68
     y=70
     width=50
     height=90
@@ -30,8 +30,8 @@ class BaseClass(pygame.sprite.Sprite):
 class Fruit (BaseClass):
     List = pygame.sprite.Group()
     
-    def __init__(self,image_string):
-        BaseClass.__init__(self,image_string)
+    def __init__(self,x1,image_string):
+        BaseClass.__init__(self,x1,image_string)
         Fruit.List.add(self)
         self.going_right=True
         self.going_down=False

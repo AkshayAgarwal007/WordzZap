@@ -43,12 +43,7 @@ def main():
     
     
     
-    
-    #----------------------- fruit loader------------------------------------
-    
-    fruitlist = ['./Assets/lit.png','./Assets/lit.png','./Assets/lit.png']
-        
-    mfruit= Fruit('./Assets/grapes.gif')
+ 
         
     
     
@@ -121,6 +116,13 @@ def main():
     text2_a.left=40+u[0]
     
     sskey=''
+    
+       
+    #----------------------- fruit loader------------------------------------
+    
+    fruitlist = ['./Assets/grapes.gif','./Assets/grapes.gif','./Assets/grapes.gif']
+        
+    mfruit= Fruit(0,fruitlist[r1])
     
     #------------tux movement----------------------
     
@@ -244,7 +246,7 @@ def main():
             text1_a.left=-160
             text2_a.left=-160
             register=True
-            
+            mfruit= Fruit(-200,fruitlist[r1])
         
         
         if move==True:
