@@ -51,6 +51,6 @@ class Fruit (BaseClass):
             if self.rect.y+self.width+self.vely>=self.base:
                 print self.rect.y
                 self.going_down=False
-                movex.append(self.rect.x)
+                Tux.movex.append(self.rect.x)
             
     

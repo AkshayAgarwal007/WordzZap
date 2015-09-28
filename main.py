@@ -250,18 +250,18 @@ def main():
             mfruit= Fruit(-200,fruitlist[r1])
         
         
-        if move==True:
-            if move_right==True:
+        if len(Tux.movex)is not 0:
+            if Tux.movex[0]>=xb:
                 xb=xb+3
                 xc=xc+3
-                if xb+190>=fallx:
-                    move = False
+                if xb+190>=Tux.movex[0]:
+                    Tux.movex.pop(0)
                     
-            if move_right==False:
+            elif Tux.move[0]<xb:
                 xb=xb-3
                 xc=xc-3
-                if xb<=fallx:
-                    move = False
+                if xb<=Tux.movex[0]:
+                    Tux.movex.pop(0)
         
         
         clock.tick(FPS)
