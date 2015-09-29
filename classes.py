@@ -16,6 +16,54 @@ class BaseClass(pygame.sprite.Sprite):
             y=70
             width=50
             height=90
+            
+        elif image_string=='./Assets/banana.gif':
+            x=x1+70
+            y=78
+            width=40
+            height=80
+            
+        elif image_string=='./Assets/kiwi.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
+            
+        elif image_string=='./Assets/plum.gif':
+            x=x1+75
+            y=79
+            width=37
+            height=77
+            
+        elif image_string=='./Assets/cherry.gif':
+            x=x1+75
+            y=77
+            width=60
+            height=70
+            
+        elif image_string=='./Assets/peer.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
+            
+        elif image_string=='./Assets/melon.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
+            
+        elif image_string=='./Assets/orange.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
+            
+        elif image_string=='./Assets/strawberry.gif':
+            x=x1+68
+            y=70
+            width=50
+            height=90
   
         self.image=pygame.transform.scale(self.image,(width,height)) 
         self.rect = self.image.get_rect()
@@ -35,6 +83,7 @@ class BaseClass(pygame.sprite.Sprite):
         
 class Tux:
     movex = []
+    score = 0
     
 class Fruit (BaseClass):
     List = pygame.sprite.Group()
@@ -45,8 +94,8 @@ class Fruit (BaseClass):
         self.going_right=True
         self.going_down=False
         self.move=True
-        self.velx=1
-        self.vely=1
+        self.velx=2
+        self.vely=2
         
     def motion(self):
         
