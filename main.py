@@ -130,7 +130,10 @@ def main():
        
     #----------------------- fruit loader------------------------------------
     
-    fruitlist = ['./Assets/grapes.gif','./Assets/grapes.gif','./Assets/grapes.gif']
+    fruitlist = ['./Assets/grapes.gif','./Assets/banana.gif','./Assets/kiwi.gif',
+                 './Assets/plum.gif','./Assets/cherry.gif','./Assets/pear.gif',
+                 './Assets/melon.gif','./Assets/orange.gif','./Assets/strawberry.gif'
+                 ]
         
     mfruit= Fruit(0,fruitlist[r1])
     
@@ -231,9 +234,10 @@ def main():
         xp=xp+2
         for imf1 in BaseClass.allsprites:
             imf1.motion()
-            
+        
+        BaseClass.allsprites.draw(screen)    
         screen.blit(imglist[r],(xp,40))
-        BaseClass.allsprites.draw(screen)
+        
         
         FONT=pygame.font.SysFont('monospace',32)
         FONT.set_bold(True)
