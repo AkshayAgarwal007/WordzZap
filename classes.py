@@ -22,12 +22,7 @@ class BaseClass(pygame.sprite.Sprite):
             y=78
             width=40
             height=80
-            
-        elif image_string=='./Assets/kiwi.gif':
-            x=x1+68
-            y=70
-            width=50
-            height=90
+        
             
         elif image_string=='./Assets/plum.gif':
             x=x1+75
@@ -41,29 +36,29 @@ class BaseClass(pygame.sprite.Sprite):
             width=60
             height=70
             
-        elif image_string=='./Assets/peer.gif':
-            x=x1+68
-            y=70
-            width=50
-            height=90
+        elif image_string=='./Assets/pear.gif':
+            x=x1+79
+            y=83
+            width=37
+            height=70
             
         elif image_string=='./Assets/melon.gif':
-            x=x1+68
-            y=70
+            x=x1+66
+            y=86
             width=50
-            height=90
+            height=70
             
         elif image_string=='./Assets/orange.gif':
-            x=x1+68
-            y=70
-            width=50
-            height=90
+            x=x1+75
+            y=83
+            width=40
+            height=50
             
         elif image_string=='./Assets/strawberry.gif':
-            x=x1+68
-            y=70
-            width=50
-            height=90
+            x=x1+75
+            y=83
+            width=37
+            height=70
   
         self.image=pygame.transform.scale(self.image,(width,height)) 
         self.rect = self.image.get_rect()
